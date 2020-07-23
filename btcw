@@ -1,0 +1,27 @@
+/ **
+* @dev Mint DUSD
+* @param in_amounts In_amounts exactos en el mismo orden que requiere el grupo de curvas
+* @param min_dusd_amount DUSD mínimo para acuñar, utilizado para limitar el deslizamiento
+* /
+función mint (
+  uint [] calldata in_amounts,
+  uint min_dusd_amount
+) devoluciones externas (uint dusd_amount) {
+	- pull in_amounts
+	- ICurveDeposit.add_liquidity (in_amounts, ...)
+	- Fichas de polvo de menta = suma (in_amounts [i] * oracle_price [i])
+}
+
+/ **
+* @dev Canjear DUSD
+* @param out_amounts Out_amounts exactos en el mismo orden requerido por el grupo de curvas
+* @param max_dusd_amount DUSD máximo para grabar, utilizado para limitar el deslizamiento
+* /
+función canjear (
+  uint [] calldata out_amounts,
+  uint max_dusd_amount
+) devoluciones externas (uint dusd_amount) {
+	- ICurveDeposit.remove_liquidity_imbalance (out_amounts, ...)
+	- Transfiere out_amounts al usuario
+	- Grabar tokens dusd = sum (out_amounts [i] * oracle_price [i])
+}
